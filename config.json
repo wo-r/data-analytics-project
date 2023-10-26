@@ -1,6 +1,22 @@
 {
-    "title": "Gas price changes over a period of 29 years from 1993 to 2022",
-    "details": "",
+    "layout": {
+        "title": "Gas price changes over a period of 29 years from 1993 to 2022",
+        "font": {
+            "family": "'Nunito', sans-serif",
+            "size": 18,
+            "color": "black"
+        },
+        "xaxis": {
+            "fixedrange": true,
+            "autorange": true,
+            "title": "Year"
+        },
+        "yaxis": {
+            "fixedrange": true,
+            "autorange": true,
+            "title": "Gas price"
+        }
+    },
     "settings": {
         "scrollZoom": false,
         "editable": false,
