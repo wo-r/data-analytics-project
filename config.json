@@ -9,13 +9,17 @@
         "xaxis": {
             "fixedrange": true,
             "autorange": true,
-            "title": "Year"
+            "title": "Year",
+            "gridcolor": "#0000001b"
         },
         "yaxis": {
             "fixedrange": true,
             "autorange": true,
-            "title": "Gas price"
-        }
+            "title": "Gas price",
+            "gridcolor": "#0000001b"
+        },
+        "plot_bgcolor": "transparent",
+        "paper_bgcolor": "transparent"
     },
     "settings": {
         "scrollZoom": false,

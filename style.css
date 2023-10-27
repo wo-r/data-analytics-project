@@ -1,0 +1,112 @@
+body, html {
+    font-family: 'Nunito', sans-serif, monospace;
+    font-weight: 500;
+    background: #e6e0ff;
+    padding: 0;
+    margin: 0;
+    overscroll-behavior: none;
+    scroll-behavior: smooth;
+    line-height: 1.5;
+    font-feature-settings: normal;
+    -moz-font-feature-settings: normal;
+    -webkit-font-feature-settings: normal;
+    font-variation-settings: normal;
+    overflow: hidden;
+    overflow-y: overlay;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+ 
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+h1 {
+    margin: 10px 0px 0px 0px;
+    font-size: 40px;
+    font-weight: bolder;
+    letter-spacing: -1px;
+}
+
+h1+sub {
+    font-size: 18px;
+}
+
+h2 {
+    margin: 20px 0px 0px 0px;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+h2+sub {
+    font-size: 18px;
+}
+
+p {
+    margin: 10px 0px 10px 0px;
+    font-size: 18px;
+}
+
+.container {
+    width: 100%;
+    margin: auto;
+}
+
+@media (min-width: 100px) /* super small screens (e.g: probably nokia phones or something) */ {
+    .container {
+        max-width: 90vw;
+    }
+}
+
+@media (min-width: 500px) /* phone screens (e.g: somewhere between 4" to 9") */  {
+    .container {
+        max-width: 90vw;
+    }
+}
+
+@media (min-width: 768px) /* small/medium screens (e.g: somewhere between 14" to 18") */ {
+    .container {
+        max-width: 90vw;
+    }
+}
+
+@media (min-width: 1024px) /* small/medium screens (e.g: somewhere between 14" to 18") */ {
+    .container {
+        max-width: 90vw;
+    }
+}
+
+@media (min-width: 1800px) /* large screens (e.g: somewhere between 25" to 31") */ {
+    .container {
+        max-width: 90vw;
+    }
+}
+
+@media (min-width: 4000px) /* huge screens (e.g: somewhere between 49" to 56") */ {
+    /*
+        This will not be tested and just exists if someone with a moniter like this
+        views this website. Since I do not own one I cannot actually see if this works
+    */
+    .container {
+        max-width: 60vw;
+    }
+}
+
+.sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.introduction {
+    margin-top: 2rem;
+}

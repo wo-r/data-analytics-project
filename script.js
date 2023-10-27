@@ -1,4 +1,4 @@
-$(window).ready(async function () { await $.ajax({type: "get", url: "./config.json", dataType: "json", contentType: "application/json; charset=utf-8",
+$(window).ready(async function () {await $.ajax({type: "get", url: "./config.json", dataType: "json", contentType: "application/json; charset=utf-8",
     success: async (_c) => {
         let csv = [];
 
@@ -32,6 +32,10 @@ $(window).ready(async function () { await $.ajax({type: "get", url: "./config.js
                 y: []
             }
 
+            // correctly split the data between the coincidental \n that exists next
+            // to the end of each arrays comma.
+            new_csv = new_csv[0].split(",\n");
+
             // split inside each
             await $.each(new_csv.reverse(), function (_n) {
                 _n = this.split(",");
@@ -57,20 +61,19 @@ $(window).ready(async function () { await $.ajax({type: "get", url: "./config.js
         let ar_gas = (await decompile(csv[0])),
             us_gas = (await decompile(csv[1]));
 
-
         // plot on line
         Plotly.newPlot($("#plot")[0], [
                 {
                     name: "Arkansas Gas",
                     x: ar_gas.x, 
-                    y: ar_gas.y, 
+                    y: ar_gas.y,
                     mode: "lines",
                     type: "scatter", 
                     line: {color: "#5467e8"}
                 },
                 {
                     name: "U.S. Gas",
-                    x: us_gas.x,
+                    x: us_gas.x, 
                     y: us_gas.y,
                     mode: "lines",
                     type: "scatter", 
