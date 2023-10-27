@@ -21,8 +21,13 @@
                 </div>
             </section>
             <section class="plotly">
-                <div class="container" style="text-align: center;">
-                    <div id="plot" style="width:100%;"></div>
+                <div class="container" style="text-align: center; position: relative; overflow: hidden;">
+                    <div id="plot-lift">
+                        <div id="plot" style="width:100%;"></div>
+                        <div style="position: absolute; top: 2rem; right: 2rem;">
+                            <button style="cursor: pointer; background: black; border: none; border-radius: 4px; color: white; padding: 5px 10px 5px 10px;" id="fullscreen-data">Fullscreen</button>
+                        </div>
+                    </div>
                 </div>
             </section>
             <section class="reasoning">
