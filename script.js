@@ -43,9 +43,9 @@ $(window).ready(async function () {await $.ajax({type: "get", url: "./config.jso
 
         // reads csv and decompiles it into readable data for
         // plotly to understand.
-        let decompile = async (csv) => {
+        let decompile = async (csv, dt) => {
             // split each into a single array
-            let new_csv = csv.split(",\r\n");
+            let new_csv = csv;
             let final = {
                 x: [],
                 y: []
@@ -53,23 +53,19 @@ $(window).ready(async function () {await $.ajax({type: "get", url: "./config.jso
 
             // correctly split the data between the coincidental \n that exists next
             // to the end of each arrays comma.
-            new_csv = new_csv[0].split(",\n");
+            new_csv = new_csv.split("\n\n");
 
             // split inside each
             await $.each(new_csv.reverse(), function (_n) {
                 _n = this.split(",");
-                _n[1] = `${_n[1]}`;
-                _n = [_n[1], _n[0], _n[2]];
 
-                let date = new Date(`${_n[1]} ${_n[0]}`).toLocaleDateString("en-US", {
+                let date = new Date(`${_n[0].split("-")[0]}/${1}/${_n[0].split("-")[1]}`).toLocaleDateString("en-US", {
                     year: 'numeric', 
                     month: 'numeric', 
                     day: "numeric"
                 });
-                date = date.split("/");
-                date = `${date[2]}-${date[0]}-${date[1]}`;
 
-                final.x.push(date);
+                final.x.push((Math.round(100*_n[1])/100));    
                 final.y.push((Math.round(100*_n[2])/100))
             })
 
@@ -77,27 +73,29 @@ $(window).ready(async function () {await $.ajax({type: "get", url: "./config.jso
         }
 
         // get decomile data from both arrays
-        let ar_gas = (await decompile(csv[0])),
-            us_gas = (await decompile(csv[1]));
+        let ar_gas = (await decompile(csv[0], 1));
+            //us_gas = (await decompile(csv[0], 2));
+
+        console.log(ar_gas)
 
         // plot on line
         Plotly.newPlot($("#plot")[0], [
                 {
-                    name: "Arkansas Gas",
-                    x: ar_gas.x, 
-                    y: ar_gas.y,
-                    mode: "lines",
-                    type: "scatter", 
+                    //name: "Both",
+                    x: ar_gas.x, // ar???
+                    y: ar_gas.y, // us??
+                    mode: 'markers',
+                    type: 'scatter',
                     line: {color: "#5467e8"}
                 },
-                {
+                /*{
                     name: "U.S. Gas",
                     x: us_gas.x, 
                     y: us_gas.y,
                     mode: "lines",
                     type: "scatter", 
                     line: {color: "#e38c56"}
-                }
+                }*/
             ],
             _c.layout,
             _c.settings
