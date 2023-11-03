@@ -1,24 +1,14 @@
 $(window).ready(async function () {await $.ajax({type: "get", url: "./config.json", dataType: "json", contentType: "application/json; charset=utf-8",
     success: async (_c) => {
-        let csv = [];
+        let csv;
 
         // get arkansas csv data
         await $.ajax({
             type: "get",
-            url: `./csv/arkansas.csv`,
+            url: `./csv/prices.csv`,
             dataType: "text",
             success: async (_a) => {
-                csv.push(_a)
-            }
-        })
-
-        // get united states csv data
-        await $.ajax({
-            type: "get",
-            url: `./csv/united-states.csv`,
-            dataType: "text",
-            success: (_u) => {
-                csv.push(_u)
+                csv = _a
             }
         })
 
@@ -43,12 +33,13 @@ $(window).ready(async function () {await $.ajax({type: "get", url: "./config.jso
 
         // reads csv and decompiles it into readable data for
         // plotly to understand.
-        let decompile = async (csv, dt) => {
+        let decompile = async (csv) => {
             // split each into a single array
             let new_csv = csv;
             let final = {
-                x: [],
-                y: []
+                //date: [],
+                ar: [],
+                us: []
             }
 
             // correctly split the data between the coincidental \n that exists next
@@ -65,37 +56,26 @@ $(window).ready(async function () {await $.ajax({type: "get", url: "./config.jso
                     day: "numeric"
                 });
 
-                final.x.push((Math.round(100*_n[1])/100));    
-                final.y.push((Math.round(100*_n[2])/100))
+                //final.date.push(_n[0]);
+                final.ar.push((Math.round(100*_n[1])/100));    
+                final.us.push((Math.round(100*_n[2])/100))
             })
 
             return final;
         }
 
         // get decomile data from both arrays
-        let ar_gas = (await decompile(csv[0], 1));
-            //us_gas = (await decompile(csv[0], 2));
-
-        console.log(ar_gas)
+        let c = (await decompile(csv));
 
         // plot on line
         Plotly.newPlot($("#plot")[0], [
                 {
-                    //name: "Both",
-                    x: ar_gas.x, // ar???
-                    y: ar_gas.y, // us??
+                    x: c.ar,
+                    y: c.us,
                     mode: 'markers',
                     type: 'scatter',
                     line: {color: "#5467e8"}
-                },
-                /*{
-                    name: "U.S. Gas",
-                    x: us_gas.x, 
-                    y: us_gas.y,
-                    mode: "lines",
-                    type: "scatter", 
-                    line: {color: "#e38c56"}
-                }*/
+                }
             ],
             _c.layout,
             _c.settings

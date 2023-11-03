@@ -9,13 +9,13 @@
         "xaxis": {
             "fixedrange": true,
             "autorange": true,
-            "title": "Ar?",
+            "title": "Arkansas",
             "gridcolor": "#0000001b"
         },
         "yaxis": {
             "fixedrange": true,
             "autorange": true,
-            "title": "Us?",
+            "title": "United States",
             "gridcolor": "#0000001b"
         },
         "plot_bgcolor": "transparent",
