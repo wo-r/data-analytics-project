@@ -26,7 +26,7 @@
         "editable": false,
         "displayModeBar": false,
         "displayLogo": false,
-        "responsive": false,
+        "responsive": true,
         "paper_bgcolor": "red"
     }
 }

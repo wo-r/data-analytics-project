@@ -12,24 +12,9 @@ $(window).ready(async function () {await $.ajax({type: "get", url: "./config.jso
             }
         })
 
-        $("#fullscreen-data").on("click", function () {
-            if ($("#fullscreen-data").attr("close") == "") {
-                $("#plot-lift").removeAttr("style");
-                $("#plot").removeAttr("style")
-                $("#fullscreen-data").removeAttr("close")
-                $("#fullscreen-data").text("Fullscreen")
-                $("#plot").attr("change")
-                return;
-            }
-
-            let table = $("#plot-lift");
-
-            table.css({"position": "fixed", "top": "0", "bottom": "0", "left": "0", "right": "0", "background": "#e6e0ff"})
-            $("#plot").css({"display": "flex", "align-items": "center", "height": "100vh", "justify-content": "center"})
-
-            $("#fullscreen-data").attr("close", ""); // once clicked again if this exists just remove "style" from all
-            $("#fullscreen-data").text("Close")
-        })
+        let table = $("#plot-lift");
+        table.css({"position": "fixed", "top": "0", "bottom": "1rem", "left": "1rem", "right": "1rem", "background": "#e6e0ff"})
+        $("#plot").css({"display": "flex", "height": "100vh"})
 
         // reads csv and decompiles it into readable data for
         // plotly to understand.
