@@ -22,7 +22,6 @@ $(window).ready(async function () {await $.ajax({type: "get", url: "./config.jso
             // split each into a single array
             let new_csv = csv;
             let final = {
-                //date: [],
                 ar: [],
                 us: []
             }
